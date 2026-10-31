@@ -11,6 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuarios implements UserDetails {
@@ -20,6 +22,7 @@ public class Usuarios implements UserDetails {
     private Integer id;
     private String nombre;
     private String username;
+    @JsonIgnore // evita que el hash de la contraseña se envie en las respuestas JSON
     private String password;
     private String rol;
     private String estado;

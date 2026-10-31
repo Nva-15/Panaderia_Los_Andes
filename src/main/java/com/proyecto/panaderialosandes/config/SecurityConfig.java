@@ -20,6 +20,9 @@ public class SecurityConfig {
                 .requestMatchers("/principal","/login", "/css/**", "/js/**", "/imagenes/**").permitAll()
                 .requestMatchers( "/principal/venta", "/principal/productos","/productos/buscar").hasAnyRole("ADMIN", "VENDEDOR")
                 .requestMatchers("/login/nuevo","/principal/listar_usuarios", "/principal/reporte**","/api/reporte-ventas/**","/productos/**").hasRole("ADMIN")
+                // administracion de usuarios y reportes: solo ADMIN
+                .requestMatchers("/login/guardar", "/login/actualizar/**", "/login/eliminar-usuario/**", "/login/dataUsuarios",
+                        "/principal/cambiar_estado", "/api/reportes/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

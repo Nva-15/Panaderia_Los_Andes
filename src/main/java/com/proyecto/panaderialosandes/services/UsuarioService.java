@@ -45,6 +45,16 @@ public class UsuarioService implements UsuarioServiceInterface, UserDetailsServi
         usuarioRepository.save(usuario);
     }
 
+    // actualiza los datos sin volver a encriptar la contraseña que ya esta guardada
+    public void actualizarUsuario(Usuarios usuario) {
+        String rol = usuario.getRol().toUpperCase();
+        if (!rol.equals("ADMIN") && !rol.equals("VENDEDOR")) {
+            throw new IllegalArgumentException("El rol debe ser ADMIN o VENDEDOR");
+        }
+        usuario.setRol(rol);
+        usuarioRepository.save(usuario);
+    }
+
     public void cambiarEstadoUsuario(int id, String nuevoEstado) {
         usuarioRepository.findById(id).ifPresent(usuario -> {
             usuario.setEstado(nuevoEstado);

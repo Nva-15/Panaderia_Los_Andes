@@ -62,7 +62,7 @@ public class ProductoController {
         Categorias categoria = categoriaRepository.findById(categoriaId).orElse(null);
         producto.setCategoria_id(categoria);
         productoRepository.save(producto);
-        return "vista/agregar_producto";
+        return "redirect:/principal/productos";
     }
 
     // metodo para buscar un producto en el menu principal

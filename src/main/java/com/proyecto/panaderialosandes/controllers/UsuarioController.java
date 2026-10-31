@@ -141,7 +141,7 @@ public class UsuarioController {
                 }
                 
                 usuario.setRol(rol);
-                usuarioService.guardarUsuario(usuario);
+                usuarioService.actualizarUsuario(usuario);
                 return ResponseEntity.ok("Usuario actualizado");
             }
             return ResponseEntity.notFound().build();

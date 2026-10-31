@@ -17,6 +17,7 @@ import com.proyecto.panaderialosandes.models.Productos;
 import com.proyecto.panaderialosandes.models.Usuarios;
 import com.proyecto.panaderialosandes.repositorios.CategoriaRepository;
 import com.proyecto.panaderialosandes.services.CategoriaService;
+import com.proyecto.panaderialosandes.services.ClienteService;
 
 import com.proyecto.panaderialosandes.services.ProductoService;
 
@@ -33,6 +34,9 @@ public class HomeController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private ClienteService clienteService;
     
 
     @Autowired
@@ -82,7 +86,8 @@ public class HomeController {
 
     @PostMapping("/guardarcliente") // localhost:8081/principal/guardarcliente
     public String guardarCliente(@ModelAttribute Clientes cliente) {
-        return "redirect:/principal/agregarcliente";
+        clienteService.guardarCliente(cliente);
+        return "redirect:/principal/agregarcliente?exito";
     }
 
     @GetMapping("/reporte_venta")

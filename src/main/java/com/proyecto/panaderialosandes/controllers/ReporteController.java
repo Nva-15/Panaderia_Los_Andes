@@ -30,16 +30,7 @@ public class ReporteController {
         response.setHeader("Content-Disposition", "attachment; filename=productos.xlsx");
 
         List<Productos> productos = productoService.obtenerTodosLosProductos();
-        excelExportService.generarReporteProductos(productos);
-    }
-    @GetMapping("/reportes/inventario")
-    public String mostrarReporteInventario() {
-        return "vista/reporte_inventario";
-    }
-
-    @GetMapping("/reportes/ventas")
-    public String mostrarReporteVentas() {
-        return "vista/reporte_venta";
+        excelExportService.generarReporteProductos(productos, response.getOutputStream());
     }
     
 }

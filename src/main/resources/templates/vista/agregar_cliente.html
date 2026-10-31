@@ -13,6 +13,7 @@
 
     <div class="container mt-5 card p-5">
         <h2 class="text-center">Registrar Nuevo Cliente</h2>
+        <div th:if="${param.exito}" class="alert alert-success mt-3">Cliente guardado correctamente.</div>
         
         <form th:action="@{/principal/guardarcliente}" th:object="${cliente}" method="post">
 
